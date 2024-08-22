@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
-import { UserProvider } from "./context/user";
-import { CategoriesProvider } from "./context/categories";
-import { CartProvider } from "./context/cart";
+import { UserProvider } from "./contexts/user";
+import { CategoriesProvider } from "./contexts/categories";
+import { CartProvider } from "./contexts/cart";
 
 import reportWebVitals from "./reportWebVitals";
 

@@ -3,8 +3,8 @@ import { Outlet, Link } from "react-router-dom";
 
 import { ReactComponent as CrwnLogo } from "../../assets/083 crown.svg";
 
-import { UserContext } from "../../context/user";
-import { CartContext } from "../../context/cart";
+import { UserContext } from "../../contexts/user";
+import { CartContext } from "../../contexts/cart";
 
 import { signOutUser } from "../../utils/firebase/firebase";
 import CartIcon from "../../components/cart-icon/cart-icon";
@@ -12,19 +12,19 @@ import CartDropdown from "../../components/cart-dropdown/cart-dropdown";
 
 import {
   NavigationContainer,
+  LogoContainer,
   NavLinks,
   NavLink,
-  LogoContainer,
-} from "./navigation.style.jsx";
+} from "./navigation.styles.jsx";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
-  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+  const { isCartOpen } = useContext(CartContext);
 
   return (
     <Fragment>
       <NavigationContainer>
-        <LogoContainer className="logo-container" to="/">
+        <LogoContainer to="/">
           <CrwnLogo className="logo" />
         </LogoContainer>
         <NavLinks>
@@ -34,7 +34,9 @@ const Navigation = () => {
               SIGN OUT
             </NavLink>
           ) : (
-            <NavLink to="/auth">SIGN IN</NavLink>
+            <NavLink className="nav-link" to="/auth">
+              SIGN IN
+            </NavLink>
           )}
           <CartIcon />
         </NavLinks>
