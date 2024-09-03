@@ -1,12 +1,12 @@
 import DirectoryItem from "../directory-item/directory-item";
-
+import hats from "../../assets/hats.png";
 import { DirectoryContainer } from "./directory.styles.jsx";
 
 const categories = [
   {
     id: 1,
     title: "hats",
-    imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
+    imageUrl: hats,
     route: "shop/hats",
   },
   {

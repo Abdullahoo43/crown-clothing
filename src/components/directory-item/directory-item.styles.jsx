@@ -6,10 +6,14 @@ export const BackgroundImage = styled.div`
   background-size: cover;
   background-position: center;
   background-image: ${({ imageurl }) => `url(${imageurl})`};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Body = styled.div`
   height: 90px;
+  width: fit-content;
   padding: 0 25px;
   display: flex;
   flex-direction: column;
@@ -18,8 +22,8 @@ export const Body = styled.div`
   border: 1px solid black;
   background-color: white;
   opacity: 0.7;
-  position: absolute;
-
+  position: relative;
+  box-sizing: border-box;
   h2 {
     font-weight: bold;
     margin: 0 6px 0;
@@ -35,13 +39,14 @@ export const Body = styled.div`
 `;
 
 export const DirectoryItemContainer = styled.div`
-  min-width: 30%;
-  height: 240px;
+  min-width: 300px;
+  height: 300px;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
+  border-radius: 5px;
   margin: 0 7.5px 15px;
   overflow: hidden;
 
