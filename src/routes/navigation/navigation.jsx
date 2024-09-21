@@ -43,6 +43,9 @@ const Navigation = () => {
             </NavLink>
           )}
           <CartIcon />
+          <NavLink className="nav-link" to="/admin">
+            ADMIN
+          </NavLink>
         </NavLinks>
         {isCartOpen ? <CartDropdown /> : null}
       </NavigationContainer>

@@ -1,7 +1,5 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+
 import {
   getAuth,
   signInWithRedirect,
@@ -22,6 +20,9 @@ import {
   writeBatch,
   query,
   getDocs,
+  arrayUnion,
+  arrayRemove,
+  updateDoc,
 } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -43,6 +44,7 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth();
+
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 export const signInWithGoogleRedirect = () =>
@@ -73,6 +75,26 @@ export const getCategoriesAndDocuments = async () => {
 
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
+};
+
+export const removeProductFromList = async (category, productToRemove) => {
+  const categoryRef = doc(db, "categories", category);
+
+  await updateDoc(categoryRef, {
+    items: arrayRemove(productToRemove),
+  });
+
+  console.log(`${productToRemove} removed from ${category}`);
+};
+
+export const addProductToList = async (category, productToAdd) => {
+  const categoryRef = doc(db, "categories", category);
+
+  await updateDoc(categoryRef, {
+    items: arrayUnion(productToAdd),
+  });
+
+  console.log(`${productToAdd.id}: ${productToAdd.name} added to ${category}`);
 };
 
 export const createUserDocumentFromAuth = async (

@@ -50,6 +50,13 @@ export const InvertedButton = styled(BaseButton)`
   }
 `;
 
+export const CRUDButton = styled(BaseButton)`
+  min-width: 0;
+  height: 0;
+  padding: 20px 20px;
+  font-size: 12px;
+`;
+
 export const ButtonSpinner = styled(SpinnerContainer)`
   width: 30px;
   height: 30px;
