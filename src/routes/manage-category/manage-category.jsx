@@ -40,14 +40,18 @@ const ManageCategory = () => {
   }, [category, categoriesMap]);
 
   const onAddProduct = () => {
-    dispatch(
-      addProductStart(category, {
-        id: products.at(-1).id + 1,
-        imageUrl,
-        name,
-        price,
-      })
-    );
+    if (name === "" || price === 0 || imageUrl === "")
+      alert("Please, enter the complete details");
+    else {
+      dispatch(
+        addProductStart(category, {
+          id: products.at(-1).id + 1,
+          imageUrl,
+          name,
+          price,
+        })
+      );
+    }
   };
   return (
     <Fragment>

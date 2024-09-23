@@ -26,6 +26,10 @@ export const BaseButton = styled.button`
   &:hover {
     background-color: rgb(68, 68, 68);
   }
+
+  &.half-width {
+    width: 40%;
+  }
 `;
 
 export const GoogleSignInButton = styled(BaseButton)`
