@@ -12,6 +12,8 @@ import {
 } from "./customer-details.styles";
 
 import InputField from "../input-field/input-field";
+import { addOrderStart } from "../../store/order/order-action";
+import { ORDER_STATUS_TYPES } from "../../store/order/order-types";
 
 const defaultFormFields = {
   fullName: "",
@@ -27,8 +29,6 @@ const CustomerDetails = ({ cartItems, cartTotal }) => {
   const { fullName, email, phoneNumber, address, specialInstructions } =
     formFields;
 
-  console.log("checking time", cartItems, cartTotal);
-
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -36,10 +36,27 @@ const CustomerDetails = ({ cartItems, cartTotal }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const date = new Date();
+    const year = String(date.getFullYear());
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const day = String(date.getDate()).padStart(2, "0");
+
+    const formattedDate = `${day}-${month}-${year}`;
+
+    const completeOrderDetail = {
+      ...formFields,
+      items: cartItems,
+      totalPrice: cartTotal,
+      status: ORDER_STATUS_TYPES.PENDING,
+      date: formattedDate,
+    };
+
     try {
-      //   dispatch(emailSignInStart(email, password));
+      dispatch(addOrderStart(completeOrderDetail));
       resetFormFields();
-    } catch (error) {}
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleChange = (event) => {

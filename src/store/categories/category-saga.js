@@ -69,7 +69,7 @@ export function* onRemoveProduct() {
   );
 }
 
-export function* categoriesSaga() {
+export function* categoriesSagas() {
   yield all([
     call(onFetchCategories),
     call(onAddProduct),

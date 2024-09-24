@@ -23,6 +23,7 @@ import {
   arrayUnion,
   arrayRemove,
   updateDoc,
+  addDoc,
 } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -56,20 +57,45 @@ export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd
 ) => {
-  const collectionRef = collection(db, collectionKey);
-  const batch = writeBatch(db);
+  console.log("start");
+  try {
+    const collectionRef = collection(db, collectionKey);
+    const batch = writeBatch(db);
 
-  objectsToAdd.forEach((object) => {
-    const docRef = doc(collectionRef, object.title.toLowerCase());
-    batch.set(docRef, object);
-  });
+    objectsToAdd.forEach((object) => {
+      const docRef = doc(collectionRef, object.title.toLowerCase());
+      batch.set(docRef, object);
+    });
 
-  await batch.commit();
-  console.log("done");
+    await batch.commit();
+    console.log("done");
+  } catch (error) {
+    console.log("something happened", error);
+  }
+};
+
+export const addCollectionAndDocument = async (collectionKey, objectToAdd) => {
+  console.log("start");
+  try {
+    const collectionRef = collection(db, collectionKey);
+    await addDoc(collectionRef, objectToAdd);
+    console.log("done");
+  } catch (error) {
+    console.log("something happened", error);
+  }
 };
 
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
+
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
+};
+
+export const getCollectionAndDocuments = async (collectionKey) => {
+  const collectionRef = collection(db, collectionKey);
 
   const q = query(collectionRef);
 
@@ -155,3 +181,9 @@ export const getCurrentUser = () => {
     );
   });
 };
+
+// order related operations
+
+// export const addOrderDocument = async (collection ) => {
+
+// }

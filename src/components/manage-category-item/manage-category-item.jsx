@@ -2,9 +2,9 @@ import { useDispatch } from "react-redux";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button";
 
 import {
-  CheckoutItemContainer,
   ImageContainer,
   BaseSpan,
+  ManageItemContainer,
 } from "./manage-category-item.styles";
 import { removeProductStart } from "../../store/categories/category-action";
 
@@ -18,7 +18,7 @@ const ManageCategoryItem = ({ product, category }) => {
   };
 
   return (
-    <CheckoutItemContainer>
+    <ManageItemContainer>
       <ImageContainer>
         <img src={imageUrl} alt={`${name}`} />
       </ImageContainer>
@@ -28,7 +28,7 @@ const ManageCategoryItem = ({ product, category }) => {
       <Button onClick={onDeleteProduct} buttonType={BUTTON_TYPE_CLASSES.crud}>
         delete product
       </Button>
-    </CheckoutItemContainer>
+    </ManageItemContainer>
   );
 };
 
