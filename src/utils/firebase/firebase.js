@@ -57,7 +57,6 @@ export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd
 ) => {
-  console.log("start");
   try {
     const collectionRef = collection(db, collectionKey);
     const batch = writeBatch(db);
@@ -68,18 +67,15 @@ export const addCollectionAndDocuments = async (
     });
 
     await batch.commit();
-    console.log("done");
   } catch (error) {
     console.log("something happened", error);
   }
 };
 
 export const addCollectionAndDocument = async (collectionKey, objectToAdd) => {
-  console.log("start");
   try {
     const collectionRef = collection(db, collectionKey);
     await addDoc(collectionRef, objectToAdd);
-    console.log("done");
   } catch (error) {
     console.log("something happened", error);
   }

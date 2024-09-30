@@ -13,6 +13,7 @@ import {
 
 import InputField from "../input-field/input-field";
 import { addOrderStart } from "../../store/order/order-action";
+import { emptyCart } from "../../store/cart/cart-action";
 import { ORDER_STATUS_TYPES } from "../../store/order/order-types";
 
 const defaultFormFields = {
@@ -54,6 +55,7 @@ const CustomerDetails = ({ cartItems, cartTotal }) => {
     try {
       dispatch(addOrderStart(completeOrderDetail));
       resetFormFields();
+      dispatch(emptyCart());
     } catch (error) {
       console.log(error.message);
     }

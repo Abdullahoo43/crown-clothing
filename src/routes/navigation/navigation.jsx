@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -17,6 +17,7 @@ import {
   NavLinks,
   NavLink,
 } from "./navigation.styles.jsx";
+import { setIsCartOpen } from "../../store/cart/cart-action.js";
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,14 @@ const Navigation = () => {
   const isCartOpen = useSelector(selectIsCartOpen);
 
   const signOutUser = () => dispatch(signOutStart());
+
+  const dropdownRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      dispatch(setIsCartOpen(false));
+    }
+  };
 
   return (
     <Fragment>
@@ -42,12 +51,16 @@ const Navigation = () => {
               SIGN IN
             </NavLink>
           )}
-          <CartIcon />
+          <div ref={dropdownRef}>
+            <CartIcon />
+            {isCartOpen ? (
+              <CartDropdown handleClickOutside={handleClickOutside} />
+            ) : null}
+          </div>
           <NavLink className="nav-link" to="/admin">
             ADMIN
           </NavLink>
         </NavLinks>
-        {isCartOpen ? <CartDropdown /> : null}
       </NavigationContainer>
       <Outlet />
     </Fragment>

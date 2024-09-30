@@ -3,8 +3,6 @@ import hats from "../../assets/hats.png";
 
 import { DirectoryContainer } from "../../components/directory/directory.styles";
 import { Fragment } from "react";
-import { useSelector } from "react-redux";
-import { selectOrders } from "../../store/order/order-selector";
 
 const categories = [
   {
@@ -40,9 +38,6 @@ const categories = [
 ];
 
 const ManageDirectory = () => {
-  const orders = useSelector(selectOrders);
-
-  console.log("orders to be displayed here", orders);
   return (
     <Fragment>
       <h1>Directory management</h1>

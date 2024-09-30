@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectCartItems } from "../../store/cart/cart-selector";
-import { addItemToCart } from "../../store/cart/cart-action";
+import {
+  selectCartItems,
+  selectIsCartOpen,
+} from "../../store/cart/cart-selector";
+import { addItemToCart, setIsCartOpen } from "../../store/cart/cart-action";
 
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button";
 
@@ -15,10 +18,18 @@ import {
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
+  const isCartOpen = useSelector(selectIsCartOpen);
 
   const { name, price, imageUrl } = product;
 
-  const addProductToCart = () => dispatch(addItemToCart(cartItems, product));
+  const addProductToCart = () => {
+    dispatch(addItemToCart(cartItems, product));
+
+    if (!isCartOpen) {
+      console.log("may be from here");
+      dispatch(setIsCartOpen(true));
+    }
+  };
 
   return (
     <ProductCartContainer>
