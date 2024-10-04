@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectOrders } from "../../store/order/order-selector";
-import OrderItem from "../../components/order-item/order-item";
+import OrdersItem from "../../components/orders-item/orders-item";
 import {
   HeaderBlock,
   OrdersContainer,
@@ -29,7 +29,7 @@ const ManageOrders = () => {
         </HeaderBlock>
       </OrdersHeader>
       {ordersArray.orders.map((order, index) => (
-        <OrderItem key={index + 1} order={order} id={index + 1} />
+        <OrdersItem key={order.id} order={order} />
       ))}
     </OrdersContainer>
   );

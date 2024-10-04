@@ -54,7 +54,7 @@ const ManageCategory = () => {
     }
   };
   return (
-    <Fragment>
+    <div>
       <Title>{category.toUpperCase()}</Title>
 
       {console.log("check", categoriesMap)}
@@ -92,7 +92,7 @@ const ManageCategory = () => {
               ))}
         </CategoryContainer>
       )}
-    </Fragment>
+    </div>
   );
 };
 

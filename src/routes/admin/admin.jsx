@@ -6,7 +6,11 @@ import ManageDirectory from "../manage-directory/manage-directory";
 import ManageCategory from "../manage-category/manage-category";
 import { fetchCategoriesStart } from "../../store/categories/category-action";
 import { fetchOrdersStart } from "../../store/order/order-action";
-import ManageOrders from "../manage-orders/manage-orders";
+
+import AdminNavigation from "../../components/admin-navigation/admin-navigation";
+
+import "./admin.css";
+import Orders from "../orders/order";
 
 const Admin = () => {
   const dispatch = useDispatch();
@@ -17,11 +21,16 @@ const Admin = () => {
   }, []);
 
   return (
-    <Routes>
-      <Route index element={<ManageDirectory />} />
-      <Route path="/orders" element={<ManageOrders />} />
-      <Route path=":category" element={<ManageCategory />} />
-    </Routes>
+    <div className="admin-container">
+      <AdminNavigation />
+      <div className="admin-child">
+        <Routes>
+          <Route index element={<ManageDirectory />} />
+          <Route path="orders/*" element={<Orders />} />
+          <Route path=":category" element={<ManageCategory />} />
+        </Routes>
+      </div>
+    </div>
   );
 };
 

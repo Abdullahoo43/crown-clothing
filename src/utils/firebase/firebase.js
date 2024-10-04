@@ -96,7 +96,10 @@ export const getCollectionAndDocuments = async (collectionKey) => {
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
+  return querySnapshot.docs.map((docSnapshot) => ({
+    id: docSnapshot.id,
+    ...docSnapshot.data(),
+  }));
 };
 
 export const removeProductFromList = async (category, productToRemove) => {

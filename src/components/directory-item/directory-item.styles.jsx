@@ -12,9 +12,8 @@ export const BackgroundImage = styled.div`
 `;
 
 export const Body = styled.div`
-  height: 90px;
   width: fit-content;
-  padding: 0 25px;
+  padding: 10px 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,8 +38,8 @@ export const Body = styled.div`
 `;
 
 export const DirectoryItemContainer = styled.div`
-  min-width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
@@ -49,6 +48,7 @@ export const DirectoryItemContainer = styled.div`
   border-radius: 5px;
   margin: 0 7.5px 15px;
   overflow: hidden;
+  border-radius: 100%;
 
   &:hover {
     cursor: pointer;

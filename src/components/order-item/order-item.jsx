@@ -1,14 +1,16 @@
-import { OrderItemContainer, Span } from "./order-item.styles";
+import "./order-item.css";
 
-const OrderItem = ({ order, id }) => {
+const OrderItem = ({ item }) => {
+  const { name, imageUrl, quantity, price, id } = item;
   return (
-    <OrderItemContainer>
-      <Span>{id}</Span>
-      <Span>{String(order.date)}</Span>
-      <Span>{order.fullName}</Span>
-      <Span>{order.status}</Span>
-      <Span>${order.totalPrice}</Span>
-    </OrderItemContainer>
+    <div className="order-item-container">
+      <div className="order-item-image-container">
+        <img src={imageUrl} alt={`${name}`} />
+      </div>
+      <p>{name}</p>
+      <p>Qty: {quantity}</p>
+      <p>${price}</p>
+    </div>
   );
 };
 

@@ -1,0 +1,24 @@
+.order-item-container {
+    display: flex;
+    gap:0;
+    padding: 10px;
+    border: 1px solid #f7f7f7;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order-item-image-container {
+    height: 80px;
+    max-width: 25%;
+
+}
+
+.order-item-image-container img {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.order-item-image-container p {
+    max-width: 25%;
+}

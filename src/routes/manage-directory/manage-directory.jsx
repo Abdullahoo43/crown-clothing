@@ -1,8 +1,11 @@
-import DirectoryItem from "../../components/directory-item/directory-item";
 import hats from "../../assets/hats.png";
 
-import { DirectoryContainer } from "../../components/directory/directory.styles";
-import { Fragment } from "react";
+import {
+  AddCategoryButton,
+  ManageDirectoryContainer,
+  ManageDirectoryItemsList,
+} from "./manage-directory.styles";
+import ManageDirectoryItem from "../../components/manage-directory-item/manage-directory-item";
 
 const categories = [
   {
@@ -39,14 +42,17 @@ const categories = [
 
 const ManageDirectory = () => {
   return (
-    <Fragment>
-      <h1>Directory management</h1>
-      <DirectoryContainer>
+    <ManageDirectoryContainer>
+      <h1>Directory Management</h1>
+      <ManageDirectoryItemsList>
         {categories.map((category) => {
-          return <DirectoryItem category={category} key={category.id} />;
+          return <ManageDirectoryItem category={category} key={category.id} />;
         })}
-      </DirectoryContainer>
-    </Fragment>
+        <AddCategoryButton>
+          <span>&#43;</span>
+        </AddCategoryButton>
+      </ManageDirectoryItemsList>
+    </ManageDirectoryContainer>
   );
 };
 

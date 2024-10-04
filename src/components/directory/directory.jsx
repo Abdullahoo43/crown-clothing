@@ -1,6 +1,10 @@
 import DirectoryItem from "../directory-item/directory-item";
 import hats from "../../assets/hats.png";
+import arrow from "../../assets/img/arrow.png";
+
 import { DirectoryContainer } from "./directory.styles.jsx";
+import "./directory.css";
+import { useState } from "react";
 
 const categories = [
   {
@@ -35,13 +39,88 @@ const categories = [
   },
 ];
 
+function customSlice(arr, index, count) {
+  const slicedPart = arr.slice(index, count);
+
+  // if(slicedPart.length===count)
+  //   return slicedPart
+
+  const remainingPart = arr.slice(0, index);
+  const result = slicedPart.concat(remainingPart).slice(0, count);
+
+  return result;
+}
+
 const Directory = () => {
+  const [firstCategory, setFirstCategory] = useState(0);
+
+  const categoriesToShow = 5;
   return (
-    <DirectoryContainer>
-      {categories.map((category) => {
-        return <DirectoryItem category={category} key={category.id} />;
-      })}
-    </DirectoryContainer>
+    <>
+      <ul class="links-container">
+        <li class="link-item">
+          <a href="#" class="link">
+            Hats
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="#" class="link">
+            Jackets
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="#" class="link">
+            Sneakers
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="#" class="link">
+            Men
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="#" class="link">
+            Women
+          </a>
+        </li>
+      </ul>
+      <header class="hero-section">
+        <div class="content">
+          <img src="" class="logo" alt="" />
+          <p class="sub-heading">best fashion collection of all time</p>
+        </div>
+      </header>
+      <section class="product">
+        <h2 class="product-category">Our Categories</h2>
+      </section>
+      <DirectoryContainer>
+        {customSlice(categories, firstCategory, categoriesToShow).map(
+          (category) => {
+            return <DirectoryItem category={category} key={category.id} />;
+          }
+        )}
+
+        <button
+          class="pre-btn"
+          onClick={() => {
+            if (firstCategory > 0) setFirstCategory((prev) => prev - 1);
+            else setFirstCategory(categories.length - 1);
+          }}
+        >
+          <img src={arrow} alt="" />
+        </button>
+        <button
+          class="nxt-btn"
+          onClick={() => {
+            if (firstCategory < categories.length - 1)
+              setFirstCategory((prev) => prev + 1);
+            else setFirstCategory(0);
+          }}
+        >
+          <img src={arrow} alt="" />
+        </button>
+      </DirectoryContainer>
+    </>
   );
 };
 

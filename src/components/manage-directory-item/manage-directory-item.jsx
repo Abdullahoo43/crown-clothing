@@ -4,9 +4,9 @@ import {
   DirectoryItemContainer,
   BackgroundImage,
   Body,
-} from "./directory-item.styles.jsx";
+} from "./manage-directory-item.styles.jsx";
 
-const DirectoryItem = ({ category }) => {
+const ManageDirectoryItem = ({ category }) => {
   const { title, imageUrl, route } = category;
 
   const navigate = useNavigate();
@@ -15,13 +15,12 @@ const DirectoryItem = ({ category }) => {
 
   return (
     <DirectoryItemContainer onClick={onNavigateHandler}>
-      <BackgroundImage imageurl={imageUrl}>
-        <Body>
-          <h3>{title}</h3>
-        </Body>
-      </BackgroundImage>
+      <BackgroundImage imageurl={imageUrl}></BackgroundImage>
+      <Body>
+        <h3>{title}</h3>
+      </Body>
     </DirectoryItemContainer>
   );
 };
 
-export default DirectoryItem;
+export default ManageDirectoryItem;
